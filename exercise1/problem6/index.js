@@ -6,7 +6,7 @@ function insertWhitespace() {
   if(arguments[0] ==  newStr)
     return null
   else
-    return newStr;
+    return newStr.trim();
 }
 
 module.exports = insertWhitespace;
