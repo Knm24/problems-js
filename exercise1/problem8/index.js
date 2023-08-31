@@ -1,16 +1,25 @@
 function longestTime() 
-{
-  
-
-  let hours = arguments[0]/3600;
-  let min = arguments[1]/60;
+{  
+  let hours = arguments[0]*3600;
+  let min = arguments[1]*60;
   let sec = arguments[2];
-
-  return Math.max(hours, min, sec);
+  
+if (sec >= hours && sec >= min)
+{
+  return arguments[2];
+}
+else if(hours >= min && hours >= sec)
+{
+  return arguments[0];
+}
+else if (min >= sec && min >= hours)
+{
+  return arguments[1];
+}
+  
+  return false;
 
 }
-
-
 
 module.exports = longestTime;
 
