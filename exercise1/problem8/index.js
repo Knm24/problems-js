@@ -12,4 +12,12 @@ function longestTime()
 
 
 
-// module.exports = longestTime;
+module.exports = longestTime;
+
+/*
+npm test ./exercise1/problem8/..
+git branch -M main
+git add .
+git commit -m "add: code ex8 \sec"
+git push -u origin main
+*/
