@@ -7,6 +7,7 @@ function arrayOfMultiples(num, len) {
     counter++;
     len--;
   }
-return newArr;}
+return newArr;
+}
 
 module.exports = arrayOfMultiples;
