@@ -1,16 +1,23 @@
 function duplicateNums(object) {
-let newArr = [];
+let newArr = Object.values(object);
+let findArr = [];
   for (const key in object) {
       let elementArray = object[key];
       
-      for (let index = 0; index < elementArray.length; index++) {
-        const find = elementArray[index];
-        if(element.indexOf !== -1) {
-          newArr.push(find);
-        }
-      }
+let tt = object.indexOf(elementArray);   
+newArr[tt] = null;
+let yy = newArr.indexOf(elementArray);  
+
+if(yy !== -1)
+{
+
+
+  if(findArr.indexOf(elementArray) === -1)
+  findArr.push(elementArray);
+}
+
   }
-  return newArr;
+  return findArr.sort(function(y, v){return y - v});
 }
 
 module.exports = duplicateNums;
