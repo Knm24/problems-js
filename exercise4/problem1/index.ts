@@ -1,3 +1,7 @@
-class Person {}
+class Person {
+    constructor(){
+        
+    }
+}
 
 export default Person;
