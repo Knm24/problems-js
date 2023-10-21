@@ -3,7 +3,9 @@
 
 
 class Figure {
-
+    calcArea(): void {
+        return console.log('This is figure');
+    }
 }
 
  export class Circle extends Figure{
@@ -44,13 +46,3 @@ export function sumOfAllAreas(...arr: (Circle | Rectangle)[]) {
     }
     return sum;
 }
-
-
-
-const circle1 = new Circle(2);
-const circle2 = new Circle(3);
-const rect1 = new Rectangle(2, 4);
-const rect2 = new Rectangle(3, 2);
-
-console.log(sumOfAllAreas(circle1, circle2)) ; // ~ 40. ...
-console.log(sumOfAllAreas(circle1, rect1)) ; // ~ 20. ...
