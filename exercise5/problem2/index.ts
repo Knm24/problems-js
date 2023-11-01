@@ -1,15 +1,15 @@
 function printNumberInInterval(b: number ) {
-  const anyfunc = (n:number) => {
-    console.log(n);
+
+  async function anyfunc (n:number) : Promise<void> {
+    await console.log(n);
   };
 
   let n = 1;
-  let timerId = setInterval(() => {
-    anyfunc(n);
+  let timerId = setInterval(async () => {
+    await anyfunc(n);
 
-    if(n == 10) {        
+    if(n == b) {        
       clearInterval(timerId);
-
     }
     n++;
 
