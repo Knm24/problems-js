@@ -1,18 +1,19 @@
+function printNumberInInterval(b: number ) {
+  const anyfunc = (n:number) => {
+    console.log(n);
+  };
 
-function log(n) {
-  console.log(n);   
-  if(n == 10) {
-    console.log('fix clear ten');
-
-    clearInterval(timerId);
-    
-  }
-}
-
-function printNumberInInterval(log) {
   let n = 1;
-  let timerId = setInterval(() => log(n++), 1000);
+  let timerId = setInterval(() => {
+    anyfunc(n);
+
+    if(n == 10) {        
+      clearInterval(timerId);
+
+    }
+    n++;
+
+  }
+  , 1000);
 }
-
-
 export default printNumberInInterval;
