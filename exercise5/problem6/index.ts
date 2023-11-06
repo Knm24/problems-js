@@ -1,27 +1,28 @@
-
 async function fetchPokemon(pokemonName: string) {
 
-try {
-
-    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
-
-    const option = {
-        method: "GET"
-    };
-
-    const response = await fetch(url, option);
-
-    if (!response.ok) {
-      throw new Error("throw error response");
+  try {  
+      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+  
+      const response = await fetch(url);
+  
+      if (!response.ok) {
+           return Promise.reject(new Error("smth went wrong"));
+      }
+  
+          const pokemon = await response.json();  
+        return {
+        id: pokemon.id,
+        name: pokemon.name,
+        height: pokemon.height,
+        weight: pokemon.weight,
+        image: pokemon.sprites.front_default,
+      };
+      } catch (err) {
+             return Promise.reject(new Error("smth went wrong"));
     }
-
-        const data = await response.json();
-       return data;
-    } catch (err) {
-    return Promise.reject(new Error("Promise reject"));
+  
+  
   }
-
-
-}
+  
 
 export default fetchPokemon;
