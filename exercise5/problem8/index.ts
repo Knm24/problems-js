@@ -8,17 +8,13 @@ try {
                 method: "GET"
                 };
 
-                const response = await fetch(url, option);
+                const response = await fetch(url);
 
                 if (!response.ok) {
-                throw new Error("throw error response");
+                        return Promise.reject(new Error("smth went wrong"));
                 }
 
                 const data = await response.json();
-
-
-
-                console.log(data.films);
 
                 let newObjData =  {
                         'name' : data.name
@@ -30,14 +26,12 @@ try {
 
 async function fetchFilms (filmURL : string) {
        
-       console.log('getDataFilms_resp::')
-       console.log(  typeof filmURL)
 
 
-        const responseFilms =  await fetch(filmURL, option);
+        const responseFilms =  await fetch(filmURL);
 
         if (!responseFilms.ok) {
-                throw new Error("throw error response");
+                return Promise.reject(new Error("smth went wrong"));
         }
 
         const getDataFilms =  await responseFilms.json();
@@ -55,15 +49,15 @@ async function fetchFilms (filmURL : string) {
 
         const filmsDataAll = await Promise.all(filmPromises);
 
-          console.log('filmsData');
-          console.log(filmsDataAll);
 
-        let all = { ...newObjData, films: filmsDataAll };
-
-        return all;
+        return { ...newObjData, films: filmsDataAll };
+         
 
                 } catch (err) {
-                return Promise.reject(new Error("Promise reject"));
+                        return Promise.reject(new Error("smth went wrong"));
                 }
 
 }
+
+export default fetchCharacterWithMovies;
+
