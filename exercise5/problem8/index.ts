@@ -2,30 +2,68 @@ async function fetchCharacterWithMovies(id: number) {
 
 try {
 
-        const url = `https://swapi.dev/api/people/${id}`;
+                const url = `https://swapi.dev/api/people/${id}`;
 
-        const option = {
-            method: "GET"
-        };
+                const option = {
+                method: "GET"
+                };
 
-        const response = await fetch(url, option);
+                const response = await fetch(url, option);
 
-        if (!response.ok) {
-        throw new Error("throw error response");
+                if (!response.ok) {
+                throw new Error("throw error response");
+                }
+
+                const data = await response.json();
+
+
+
+                console.log(data.films);
+
+                let newObjData =  {
+                        'name' : data.name
+                 }
+
+
+       
+
+
+async function fetchFilms (filmURL : string) {
+       
+       console.log('getDataFilms_resp::')
+       console.log(  typeof filmURL)
+
+
+        const responseFilms =  await fetch(filmURL, option);
+
+        if (!responseFilms.ok) {
+                throw new Error("throw error response");
         }
 
-        const data = await response.json();
+        const getDataFilms =  await responseFilms.json();
 
-        return data;
-
+         return getDataFilms.title; 
 
         
-    } catch (err) {
-    return Promise.reject(new Error("Promise reject"));
-  }
-
 
 }
 
+        const filmPromises = data.films.map(async (item: string) => {
+            return await fetchFilms(item); 
+        });
 
-export default fetchCharacterWithMovies;
+
+        const filmsDataAll = await Promise.all(filmPromises);
+
+          console.log('filmsData');
+          console.log(filmsDataAll);
+
+        let all = { ...newObjData, films: filmsDataAll };
+
+        return all;
+
+                } catch (err) {
+                return Promise.reject(new Error("Promise reject"));
+                }
+
+}
