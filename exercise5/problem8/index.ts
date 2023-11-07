@@ -2,14 +2,11 @@ async function fetchCharacterWithMovies(id: number) {
 
 try {
 
-
-
-
-async function fetchPeople (id : number) {
-       
-
                 const url = `https://swapi.dev/api/people/${id}`;
 
+                const option = {
+                method: "GET"
+                };
 
                 const response = await fetch(url);
 
@@ -19,12 +16,12 @@ async function fetchPeople (id : number) {
 
                 const data = await response.json();
 
-            
-                 return {
-                        'name' : data.name,
-                        'films' : data.films
-                 };
-}
+                let newObjData =  {
+                        'name' : data.name
+                 }
+
+
+       
 
 
 async function fetchFilms (filmURL : string) {
@@ -45,37 +42,15 @@ async function fetchFilms (filmURL : string) {
 
 }
 
-let newObjPeopleData = fetchPeople (id);
-  let filmsDataAll = newObjPeopleData.then(res => { 
-        
-
-        const filmPromises = res.films.map(async (item: string) => {
+        const filmPromises = data.films.map(async (item: string) => {
             return await fetchFilms(item); 
         });
 
-        return Promise.all(filmPromises);
 
- });
-
+        const filmsDataAll = await Promise.all(filmPromises);
 
 
- 
- filmsDataAll.then(res => { 
- 
-   let getPeoples = newObjPeopleData.then(people => {; people
-
-          let all = { name: people.name, films: res };
-
-           return all;
-   });
-
-
-
-
-  });  
-      
-
-
+        return { ...newObjData, films: filmsDataAll };
          
 
                 } catch (err) {
@@ -84,6 +59,5 @@ let newObjPeopleData = fetchPeople (id);
 
 }
 
-
- export default fetchCharacterWithMovies;
+export default fetchCharacterWithMovies;
 
