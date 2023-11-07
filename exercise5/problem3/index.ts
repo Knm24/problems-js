@@ -5,7 +5,6 @@ function printAsyncNumbers(b: number ) {
     let timems = n * 10000;
     //await console.log('timems:' + timems);
 
-
     await (setTimeout(():void => {}), timems);
 
     await console.log(n);
