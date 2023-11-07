@@ -1,4 +1,4 @@
-    function wait (ms: number) {setTimeout(() => {
+async function wait (ms: number) {setTimeout(() => {
          console.log("Delayed for second " + ms);
       }, ms);
    }
