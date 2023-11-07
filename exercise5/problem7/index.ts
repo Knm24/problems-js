@@ -20,8 +20,7 @@ async function fetchPokemons(names: string[]) {
                         image: pokemon.sprites.front_default,
                       };        
         }
-        
-        
+                
                 const filmPromises = names.map(async (item_name: string) => {       
         
                     return await fetchFilms(`https://pokeapi.co/api/v2/pokemon/${item_name}`); 
