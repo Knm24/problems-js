@@ -1,5 +1,6 @@
 async function fetchPokemon(pokemonName: string) {
 
+  
   try {  
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
   
