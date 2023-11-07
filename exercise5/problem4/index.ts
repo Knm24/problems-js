@@ -25,8 +25,7 @@ class Timer {
     
     pause() {
         this.isPaused = true;
-    }
-    
+    }    
     reset() {
         this.startNum = new Date().getTime();
         this.elapsedTime = 0;
