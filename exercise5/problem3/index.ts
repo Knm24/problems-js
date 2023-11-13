@@ -1,29 +1,18 @@
-function printAsyncNumbers(b: number ) {
+async function printAsyncNumbers(b: number) {
+  let i = 1;
 
-  async function anyfunc (n:number) : Promise<number> {
-     
-    let timems = n * 10000;
-    //await console.log('timems:' + timems);
-
-    await (setTimeout(():void => {}), timems);
-
-    await console.log(n);
-    return n;
-  };
-
-  let n = 1;
-  
-  let timerId = setInterval(async () => {
-      let timems : number;
-      timems = await anyfunc(n);
-              console.log(timems);
-    if(n == b) {        
-      clearInterval(timerId);
-    }
-    n++;
-
+  while (i <= b) {   
+    await anyfunc(i);
+    console.log(i); 
+    i++;
   }
-  ,  1000);
+
+   function anyfunc(n: number) {
+    let timems = n * 1000;
+     return new Promise(resolve => setTimeout(resolve, timems));
+  }
+
 }
+
 
 export default printAsyncNumbers;
