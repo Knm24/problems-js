@@ -29,7 +29,7 @@ async function fetchPokemons(names: string[]) {
                 const filmsDataAll = await Promise.all(filmPromises);
 
 
-                   return { filmsDataAll };
+                   return  filmsDataAll ;
 
         
                         } catch (err) {
