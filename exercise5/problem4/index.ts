@@ -10,11 +10,10 @@ class Timer {
   }
 
   public start(): void {
-    if (!this.#isPaused) {
+    if (this.#isPaused) {
       this.#startTime = new Date().getTime();
+      this.#isPaused = false;
     }
-
-    this.#isPaused = false;
   }
 
   public pause(): void {
@@ -27,7 +26,7 @@ class Timer {
   public reset(): void {
     this.#startTime = 0;
     this.#elapsedTime = 0;
-    this.#isPaused = false;
+    this.#isPaused = true;
   }
 
   public log(): void {
@@ -40,9 +39,9 @@ class Timer {
     const minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
     const hours = Math.floor(milliseconds / (1000 * 60 * 60));
 
-
-    console.log({ h: hours, m: minutes, ms: milliseconds % 1000, s: seconds });
+    console.log({ h: hours, m: minutes, s: seconds, ms: milliseconds % 1000 });
   }
 }
+
 
 export default Timer;
