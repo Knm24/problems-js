@@ -1,40 +1,48 @@
 class Timer {
-    private currTimeMS: number;
-    private startNum: number;
-    private isPaused: boolean;
-    private elapsedTime: number;
+  #startTime: number;
+  #isPaused: boolean;
+  #elapsedTime: number;
 
-    constructor() {
-        this.currTimeMS = new Date().getTime();
-        this.startNum = this.currTimeMS;
-        this.isPaused = false;
-        this.elapsedTime = 0;
-    }
-    
-    start() {
-        while (true) {
-            this.currTimeMS = new Date().getTime();
-            this.elapsedTime = Math.floor((this.currTimeMS - this.startNum) / 1000);
-            console.log(this.elapsedTime);
+  constructor() {
+    this.#startTime = 0;
+    this.#isPaused = true;
+    this.#elapsedTime = 0;
+  }
 
-            if (this.isPaused) {
-                break;
-            }
-        }
-    }
-    
-    pause() {
-        this.isPaused = true;
-    }    
-    reset() {
-        this.startNum = new Date().getTime();
-        this.elapsedTime = 0;
+  public start(): void {
+    if (!this.#isPaused) {
+      this.#startTime = new Date().getTime();
     }
 
-    log() {
-        console.log(this.elapsedTime);
+    this.#isPaused = false;
+  }
+
+  public pause(): void {
+    if (!this.#isPaused) {
+      this.#elapsedTime += new Date().getTime() - this.#startTime;
+      this.#isPaused = true;
     }
+  }
+
+  public reset(): void {
+    this.#startTime = 0;
+    this.#elapsedTime = 0;
+    this.#isPaused = false;
+  }
+
+  public log(): void {
+    const currentTime = this.#isPaused
+      ? this.#elapsedTime
+      : this.#elapsedTime + (new Date().getTime() - this.#startTime);
+
+    const milliseconds = currentTime;
+    const seconds = Math.floor((milliseconds / 1000) % 60);
+    const minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
+    const hours = Math.floor(milliseconds / (1000 * 60 * 60));
+
+
+    console.log({ h: hours, m: minutes, ms: milliseconds % 1000, s: seconds });
+  }
 }
-
 
 export default Timer;
