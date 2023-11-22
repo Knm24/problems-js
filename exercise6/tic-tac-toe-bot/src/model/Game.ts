@@ -23,7 +23,10 @@ class Game {
         Math.floor(i / 2) % 2 === 0 ? ["x", "o"] : ["o", "x"];
 
       const round = new Round(this, player1Piece, player2Piece, i % 2 === 0);
-
+      
+      for (let i = 0; i < 9; i++) {
+        round.move(i);
+      }
       this.rounds.push(round);
     }
   }
