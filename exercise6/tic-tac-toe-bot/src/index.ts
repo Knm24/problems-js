@@ -1,10 +1,11 @@
 import "./index.css";
 import {controller, signal} from "./utils/abortSignal.ts";
 import App from "./app.ts";
-import SlytherinUser from "./model/SlytherinUser.ts";
+//import SlytherinUser from "./model/SlytherinUser.ts";
 import GryffindorUser from "./model/GryffindorUser.ts";
-import RavenclawUser from "./model/RavenclawUser.ts";
-import HufflepuffUser from "./model/HufflepuffUser.ts";
+// import RavenclawUser from "./model/RavenclawUser.ts";
+// import HufflepuffUser from "./model/HufflepuffUser.ts";
+import Team4 from "./model/team4";
 
 window.addEventListener("unload", unloadHandler, {once: true});
 window.addEventListener("load", loadHandler, {once: true});
@@ -41,9 +42,9 @@ function getApp() {
 
 function getPlayers() {
     const gryffindorUser = new GryffindorUser();
-    const slytherinUser = new SlytherinUser();
-    const ravenclawUser = new RavenclawUser();
-    const hufflepuffUser = new HufflepuffUser();
-
-    return [gryffindorUser, slytherinUser, ravenclawUser, hufflepuffUser];
+    // const slytherinUser = new SlytherinUser();
+    // const ravenclawUser = new RavenclawUser();
+    // const hufflepuffUser = new HufflepuffUser();
+       const team4 = new Team4();
+    return [gryffindorUser,team4];
 }
