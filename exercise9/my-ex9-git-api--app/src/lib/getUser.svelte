@@ -15,9 +15,9 @@
     }
   };
 
-  const data = await fetchPokemon();
+  const data = await fetchAll();
 
-  console.log(data);
+  console.log(data.name);
 </script>
 
 <section class="userSearch">
