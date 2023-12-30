@@ -1,19 +1,23 @@
 <script>
   const fetchAll = async () => {
     try {
-      const response = await fetch(`https://api.github.com/users/1`);
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/1/`);
+      console.log(response);
+      //      const response = await fetch(`https://api.github.com/users/1`);
       if (!response.ok) {
         throw new Error(
           `GitHub API request failed with status ${response.status}`
         );
       }
-      this.user = await response.json();
+      return await response.json();
     } catch (error) {
       console.error('Error fetching GitHub user:', error);
     }
   };
 
-  console.log(fetchAll);
+  const data = await fetchPokemon();
+
+  console.log(data);
 </script>
 
 <section class="userSearch">
