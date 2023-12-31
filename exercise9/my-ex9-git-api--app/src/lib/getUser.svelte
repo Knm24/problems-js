@@ -1,12 +1,10 @@
 <script>
   let getValueUsername;
   let useJSONDATA;
-  let following;
   function showName() {
     fetchAll(getValueUsername).then((userData) => {
       console.log(userData);
       useJSONDATA = userData;
-      following = useJSONDATA.following;
     });
   }
 
@@ -46,7 +44,7 @@
 </script>
 
 <section class="userSearch">
-  <label for="username"></label>
+  <label for="username">devfinder</label>
   <input
     type="text"
     id="username"
@@ -58,10 +56,21 @@
 
 <section class="userResult">
   <div>
-    <h2 class="login">login <span>{getValueUsername}</span></h2>
+    <p class="avatar"><img src={useJSONDATA?.avatar_url ?? ''} alt="" /></p>
+    <h2 class="title"><span>{useJSONDATA?.created_at ?? ''}</span></h2>
+    <h3 class="login"><span>{useJSONDATA?.login ?? ''}</span></h3>
+    <p class="bio"><span>{useJSONDATA?.bio ?? ''}</span></p>
     <p class="date">{useJSONDATA?.created_at ?? ''}</p>
-    <p class="Repos">Repos: {useJSONDATA?.public_repos ?? ''}</p>
-    <p class="Followers">Followers: {useJSONDATA?.followers ?? ''}</p>
-    <p class="Following">Following: {useJSONDATA?.following ?? ''}</p>
+    <p class="Repos">Repos <span>{useJSONDATA?.public_repos ?? ''}</span></p>
+    <p class="Followers">
+      Followers <span>{useJSONDATA?.followers || ''}</span>
+    </p>
+    <p class="Following">
+      Following <span>{useJSONDATA?.following || ''}</span>
+    </p>
+    <p class="location">{useJSONDATA?.location || ''}</p>
+    <p class="twiiter">{useJSONDATA?.twitter_username || ''}</p>
+    <p class="link">{useJSONDATA?.html_url || ''}</p>
+    <p class="hub">{useJSONDATA?.following || ''}</p>
   </div>
 </section>
