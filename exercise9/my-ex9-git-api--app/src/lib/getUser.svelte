@@ -1,23 +1,59 @@
 <script>
+  let valueName;
+
+  function showName() {
+    console.log(valueName);
+  }
+
   const fetchAll = async () => {
     try {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/1/`);
-      console.log(response);
-      //      const response = await fetch(`https://api.github.com/users/1`);
+      let headers1 = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Accept: 'application/vnd.github+json',
+          'X-GitHub-Api-Version': '2022-11-28',
+        },
+      };
+
+      const response = await fetch(
+        `https://api.github.com/users/talg`,
+        headers1
+      );
+
       if (!response.ok) {
         throw new Error(
           `GitHub API request failed with status ${response.status}`
         );
       }
-      return await response.json();
+
+      let dataNew = await response.json();
+
+      return dataNew;
     } catch (error) {
       console.error('Error fetching GitHub user:', error);
     }
   };
 
-  const data = await fetchAll();
+  fetchAll().then((value) => console.log(value.login));
 
-  console.log(data.name);
+  /*
+  let getDataResult = fetchAll().then((rez) => {
+    return rez;
+  });
+  console.log(getDataResult);
+  */
+
+  /*
+  const data = async () => {
+    await fetchAll();
+  };
+  data().then(function (result) {
+    console.log(result);
+  });
+  console.log('data(-)');
+
+  */
 </script>
 
 <section class="userSearch">
@@ -25,10 +61,10 @@
   <input
     type="text"
     id="username"
-    value=""
     placeholder="Search GitHub username…"
+    bind:value={valueName}
   />
-  <button>Search</button>
+  <button type="submit" on:click={showName}>Search</button>
 </section>
 
 <section class="userResult">
