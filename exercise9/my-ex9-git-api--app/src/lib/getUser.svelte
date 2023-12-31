@@ -1,8 +1,13 @@
 <script>
   let getValueUsername;
-
+  let useJSONDATA;
+  let following;
   function showName() {
-    fetchAll(getValueUsername).then((value) => console.log(value));
+    fetchAll(getValueUsername).then((userData) => {
+      console.log(userData);
+      useJSONDATA = userData;
+      following = useJSONDATA.following;
+    });
   }
 
   const fetchAll = async (searchName) => {
@@ -54,9 +59,9 @@
 <section class="userResult">
   <div>
     <h2 class="login">login <span>{getValueUsername}</span></h2>
-    <p class="date"></p>
-    <p class="Repos">Repos:</p>
-    <p class="Followers">Followers:</p>
-    <p class="Following">Following:</p>
+    <p class="date">{useJSONDATA?.created_at ?? ''}</p>
+    <p class="Repos">Repos: {useJSONDATA?.public_repos ?? ''}</p>
+    <p class="Followers">Followers: {useJSONDATA?.followers ?? ''}</p>
+    <p class="Following">Following: {useJSONDATA?.following ?? ''}</p>
   </div>
 </section>
