@@ -53,7 +53,7 @@
 
 <section class="userResult">
   <div>
-    <h2 class="login">login</h2>
+    <h2 class="login">login <span>{getValueUsername}</span></h2>
     <p class="date"></p>
     <p class="Repos">Repos:</p>
     <p class="Followers">Followers:</p>
