@@ -1,11 +1,15 @@
 <script>
-  let valueName;
+  let getValueUsername;
 
   function showName() {
-    console.log(valueName);
+    fetchAll(getValueUsername).then((value) => console.log(value));
   }
 
-  const fetchAll = async () => {
+  const fetchAll = async (searchName) => {
+    console.log('searchName');
+
+    console.log(searchName);
+
     try {
       let headers1 = {
         method: 'GET',
@@ -17,7 +21,7 @@
       };
 
       const response = await fetch(
-        `https://api.github.com/users/talg`,
+        `https://api.github.com/users/${searchName}`,
         headers1
       );
 
@@ -34,26 +38,6 @@
       console.error('Error fetching GitHub user:', error);
     }
   };
-
-  fetchAll().then((value) => console.log(value.login));
-
-  /*
-  let getDataResult = fetchAll().then((rez) => {
-    return rez;
-  });
-  console.log(getDataResult);
-  */
-
-  /*
-  const data = async () => {
-    await fetchAll();
-  };
-  data().then(function (result) {
-    console.log(result);
-  });
-  console.log('data(-)');
-
-  */
 </script>
 
 <section class="userSearch">
@@ -62,7 +46,7 @@
     type="text"
     id="username"
     placeholder="Search GitHub username…"
-    bind:value={valueName}
+    bind:value={getValueUsername}
   />
   <button type="submit" on:click={showName}>Search</button>
 </section>
