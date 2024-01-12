@@ -7,10 +7,69 @@
   let errorValidation = '';
   let successValidation = '';
 
+  let CardholderNameError = '';
+  let cardNumberError = '';
+  let expirationDateMMError = '';
+  let expirationDateYYError = '';
+  let cvvError = '';
+
   const handleConfirm = () => {
-    console.log('test');
+    console.log('RUN validation');
+
+    emptyErrors();
+
+    if (!CardholderName.trim()) {
+      CardholderNameError = 'Can’t be blank';
+    }
+
+    if (!cardNumber.trim()) {
+      cardNumberError = 'Can’t be blank';
+    } else if (!isValidCardNumber(cardNumber)) {
+      cardNumberError = 'Wrong format, numbers only';
+    }
+
+    if (!expirationDateMM.trim()) {
+      expirationDateMMError = 'Can’t be blank';
+    } else if (!isValidExpirationDateMM(expirationDateMM)) {
+      expirationDateMMError = 'Wrong format, numbers only';
+    }
+
+    if (!expirationDateYY.trim()) {
+      expirationDateYYError = 'Can’t be blank';
+    } else if (!isValidExpirationDateYY(expirationDateYY)) {
+      expirationDateYYError = 'Wrong format, numbers only';
+    }
+
+    if (!cvv.trim()) {
+      cvvError = 'Can’t be blank';
+    } else if (!isValidCVV(cvv)) {
+      cvvError = 'Wrong format, numbers only';
+    }
+  };
+
+  const isValidCardNumber = (number) => {
+    return /^\d{16}$/.test(number);
+  };
+
+  const isValidExpirationDateMM = (date) => {
+    return /^\d{2}$/.test(date);
+  };
+  const isValidExpirationDateYY = (date) => {
+    return /^\d{2}$/.test(date);
+  };
+  const isValidCVV = (date) => {
+    return /^\d{3}$/.test(date);
+  };
+  const emptyErrors = () => {
+    CardholderNameError = '';
+    cardNumberError = '';
+    expirationDateMMError = '';
+    expirationDateYYError = '';
+    cvvError = '';
   };
 </script>
+
+<p class="sucsuccessValidation">{successValidation}</p>
 
 <div class="preview">
   <div class="cvv">{cvv}</div>
@@ -29,6 +88,7 @@
       type="text"
       placeholder="e.g. Jane Appleseed"
     />
+    <p class="errorValidation">{CardholderNameError}</p>
   </label>
 
   <label>
@@ -38,6 +98,7 @@
       type="text"
       placeholder="e.g. 1234 5678 9123 0000"
     />
+    <p class="errorValidation">{cardNumberError}</p>
   </label>
 
   <label>
@@ -48,17 +109,21 @@
       type="text"
       placeholder="MM"
     />
+    <p class="errorValidation">{expirationDateMMError}</p>
+
     <input
       class="expirationDate"
       bind:value={expirationDateYY}
       type="text"
       placeholder="YY"
     />
+    <p class="errorValidation">{expirationDateYYError}</p>
   </label>
 
   <label>
     CVV:
     <input bind:value={cvv} type="text" placeholder="e.g. 123" />
+    <p class="errorValidation">{cvvError}</p>
   </label>
 
   <button type="submit">Confirm</button>
