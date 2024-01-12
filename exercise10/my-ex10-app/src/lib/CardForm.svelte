@@ -1,4 +1,12 @@
 <script>
+  export let myCallThanks;
+
+  const checkForm = () => {
+    if (isValidForm) {
+      myCallThanks();
+    }
+  };
+
   let cardNumber = '';
   let CardholderName = '';
   let expirationDateMM = '';
@@ -12,6 +20,7 @@
   let expirationDateMMError = '';
   let expirationDateYYError = '';
   let cvvError = '';
+  let isValidForm = false;
 
   const handleConfirm = () => {
     console.log('RUN validation');
@@ -45,6 +54,10 @@
     } else if (!isValidCVV(cvv)) {
       cvvError = 'Wrong format, numbers only';
     }
+
+    if (!hasErrors()) {
+      isValidForm = true;
+    }
   };
 
   const isValidCardNumber = (number) => {
@@ -66,6 +79,16 @@
     expirationDateMMError = '';
     expirationDateYYError = '';
     cvvError = '';
+  };
+
+  const hasErrors = () => {
+    return (
+      CardholderNameError ||
+      cardNumberError ||
+      expirationDateMMError ||
+      expirationDateYYError ||
+      cvvError
+    );
   };
 </script>
 
@@ -126,7 +149,7 @@
     <p class="errorValidation">{cvvError}</p>
   </label>
 
-  <button type="submit">Confirm</button>
+  <button type="submit" on:click={checkForm}>Confirm</button>
 </form>
 
 <style>

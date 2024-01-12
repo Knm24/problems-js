@@ -1,19 +1,22 @@
 <script>
-  import svelteLogo from './assets/svelte.svg';
-  import viteLogo from '/vite.svg';
-  import Counter from './lib/Counter.svelte';
-
   import CardForm from './lib/CardForm.svelte';
 
   import Thanks from './lib/Thanks.svelte';
+  let showThankYou = false;
+
+  const handleThankYou = () => {
+    showThankYou = true;
+  };
 </script>
 
 <main>
-  <div class="card">
-    <CardForm />
-  </div>
-
-  <div class="thank_you">
-    <Thanks />
-  </div>
+  {#if showThankYou}
+    <div class="thank_you">
+      <Thanks />
+    </div>
+  {:else}
+    <div class="card">
+      <CardForm myCallThanks={handleThankYou} />
+    </div>
+  {/if}
 </main>

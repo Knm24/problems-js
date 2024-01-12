@@ -1,10 +1,10 @@
 <script>
-  let count = 0;
-  const increment = () => {
-    count += 1;
-  };
 </script>
 
-<button on:click={increment}>
-  count is {count}
-</button>
+<section>
+  <h2>THANK YOU!</h2>
+
+  <div class="note">We’ve added your card details</div>
+</section>
+
+<button>Continue</button>
