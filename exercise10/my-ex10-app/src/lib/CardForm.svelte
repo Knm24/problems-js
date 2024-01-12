@@ -61,7 +61,7 @@
   };
 
   const isValidCardNumber = (number) => {
-    return /^\d{16}$/.test(number);
+    return /^\d{4} \d{4} \d{4} \d{4}$/.test(number);
   };
 
   const isValidExpirationDateMM = (date) => {
@@ -89,6 +89,11 @@
       expirationDateYYError ||
       cvvError
     );
+  };
+
+  const addSpaceToNumberInput = () => {
+    cardNumber = cardNumber.split(' ').join('');
+    cardNumber = cardNumber.match(/.{1,4}/g).join(' ');
   };
 </script>
 
@@ -118,6 +123,7 @@
     Card Number:
     <input
       bind:value={cardNumber}
+      on:input={addSpaceToNumberInput}
       type="text"
       placeholder="e.g. 1234 5678 9123 0000"
     />
