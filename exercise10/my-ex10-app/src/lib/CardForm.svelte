@@ -4,6 +4,12 @@
   let expirationDateMM = '';
   let expirationDateYY = '';
   let cvv = '';
+  let errorValidation = '';
+  let successValidation = '';
+
+  const handleConfirm = () => {
+    console.log('test');
+  };
 </script>
 
 <div class="preview">
@@ -15,7 +21,7 @@
   </div>
 </div>
 
-<form on:submit>
+<form on:submit|preventDefault={handleConfirm}>
   <label>
     Cardholder Name:
     <input
