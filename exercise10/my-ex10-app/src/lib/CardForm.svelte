@@ -2,7 +2,11 @@
   export let myCallThanks;
 
   const checkForm = () => {
+    console.log('checkForm');
+
     if (isValidForm) {
+      console.log('isValidForm');
+
       myCallThanks();
     }
   };
@@ -57,6 +61,7 @@
 
     if (!hasErrors()) {
       isValidForm = true;
+      checkForm();
     }
   };
 
@@ -155,7 +160,7 @@
     <p class="errorValidation">{cvvError}</p>
   </label>
 
-  <button type="submit" on:click={checkForm}>Confirm</button>
+  <button type="submit">Confirm</button>
 </form>
 
 <style>

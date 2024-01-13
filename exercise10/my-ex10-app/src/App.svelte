@@ -6,6 +6,7 @@
 
   const handleThankYou = () => {
     showThankYou = true;
+    console.log('handleThankYou');
   };
 </script>
 
