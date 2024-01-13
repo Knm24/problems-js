@@ -25,6 +25,7 @@
   let expirationDateYYError = '';
   let cvvError = '';
   let isValidForm = false;
+  let cursorPosition = 0;
 
   const handleConfirm = () => {
     console.log('RUN validation');
@@ -100,6 +101,14 @@
     cardNumber = cardNumber.split(' ').join('');
     cardNumber = cardNumber.match(/.{1,4}/g).join(' ');
   };
+
+  const handleCursorMove = (event) => {
+    cursorPosition = event.target.selectionStart;
+  };
+
+  const setCursorPosition = (input) => {
+    input.setSelectionRange(cursorPosition, cursorPosition);
+  };
 </script>
 
 <p class="sucsuccessValidation">{successValidation}</p>
@@ -131,6 +140,8 @@
       on:input={addSpaceToNumberInput}
       type="text"
       placeholder="e.g. 1234 5678 9123 0000"
+      on:inputmove={handleCursorMove}
+      use:setCursorPosition
     />
     <p class="errorValidation">{cardNumberError}</p>
   </label>
