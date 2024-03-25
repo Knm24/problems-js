@@ -1,60 +1,38 @@
-# problems-js
+# create-svelte
 
-This is problems repo.
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
-## Prerequisites
+## Creating a project
 
-You will need:
+If you're seeing this, you've probably already done this step. Congrats!
 
-* [git](https://git-scm.com/)
-* [NodeJS](https://nodejs.org) (npm come with node js)
+```bash
+# create a new project in the current directory
+npm create svelte@latest
 
-Using [jest](https://jestjs.io/) as a testing lib.
-
-## Start
-
-1. Fork repo.
-
-![fork](assets/fork_example.png "Fork button")
-
-2. Clone forked repo. Use ssh because you will need to push.
-3. Install all dependencies.
-
-```shell
-npm install
+# create a new project in my-app
+npm create svelte@latest my-app
 ```
 
-4. Solve problems and test if they are valid.
+## Developing
 
-```shell
-npm test
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```bash
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
 ```
 
-## Update
+## Building
 
-First need setup remote repo for update. You need to do that **once**:
+To create a production version of your app:
 
-```shell
-git remote add upstream git@github.com:talgat-ruby/problems-js.git
-git remote set-url --push upstream DISABLE
+```bash
+npm run build
 ```
 
-Now any time you need to update you can do:
+You can preview the production build with `npm run preview`.
 
-```shell
-git pull upstream main
-```
-
-## Test
-
-In order to run specific exercise (for example `exercise2`):
-
-```shell
-npm test ./exercise2/..
-```
-
-Or specific problem (for example `exercise3/problem5`):
-
-```shell
-npm test ./exercise3/problem5/..
-```
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
