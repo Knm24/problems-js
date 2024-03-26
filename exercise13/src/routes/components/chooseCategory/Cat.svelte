@@ -1,20 +1,28 @@
 <script lang="ts">
 
-	import Question from '../questions/question.svelte';
+	// import Question from '../questions/question.svelte';
+    // <Question/>
+
+import { goto } from '$app/navigation';
+// ...Your other imports
+    
 
 
   let curr = '';
 
   let arr1 = [
-        {id:'first',value:'Accessibility'},
-        {id:'second',value:'HTML'},
-        {id:'third',value:'CSS'},
-        {id:'four',value:'JavaScript'}
+        {id:0,value:'HTML'},
+        {id:1,value:'CSS'},
+        {id:2,value:'JavaScript'},
+        {id:3,value:'Accessibility'}
     ];
 
-function incrementCount(e) {
-    curr = e;
+function incrementCount(val) {
+    console.log('redirect' + val);
+    goto('/questions/'+ val + '/0');
 }
+
+
 </script>
 
 
@@ -23,7 +31,7 @@ function incrementCount(e) {
 {#each arr1 as item }
 
 
-    <button class="" on:click={() => incrementCount(item.value)}>
+    <button class="" on:click={() => incrementCount(item.id)}>
     <span class="">
         <img src="" alt="" />
     </span>
@@ -37,7 +45,6 @@ function incrementCount(e) {
 
 </section>
 
-<Question/>
 
 <style>
 	

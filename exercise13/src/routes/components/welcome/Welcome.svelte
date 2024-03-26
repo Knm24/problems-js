@@ -3,10 +3,9 @@
 
 </script>
 <section class="info">
-	<h1>Welcome to the 
+	 <h1>Welcome to the 
 	<span class="attention">Frontend Quiz!</span>
 	</h1>
-
 	<h2>Pick a subject to get started.</h2>
 </section>
 
